@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vice Cover Studio — GTA-style cover art maker</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="brand">
+    <span class="brand-mark">VC</span>
+    <div>
+      <h1>Vice Cover Studio</h1>
+      <p>Turn your photo into a sunset-neon poster cover. 100% offline — photos never leave your machine.</p>
+    </div>
+  </div>
+  <div class="top-actions">
+    <span id="photoCount" class="pill">0 photos</span>
+  </div>
+</header>
+
+<main class="layout">
+  <section class="stage">
+    <div class="canvas-wrap">
+      <canvas id="coverCanvas" width="1080" height="1080" aria-label="Cover preview"></canvas>
+      <p id="panelHint" class="hint">Click a panel to select it, then pick its photo and adjust zoom and position.</p>
+    </div>
+    <div class="size-row" role="group" aria-label="Export size">
+      <button class="size-btn is-active" data-size="square">1080 × 1080</button>
+      <button class="size-btn" data-size="portrait">1080 × 1350</button>
+      <button class="size-btn" data-size="wide">1920 × 1080</button>
+    </div>
+    <button id="exportBtn" class="export-btn">Export PNG</button>
+    <p id="statusLine" class="status" aria-live="polite">Load a photo to start.</p>
+  </section>
+
+  <aside class="controls">
+    <section class="card">
+      <h2>1 · Photos</h2>
+      <label class="file-btn" for="fileInput">Add photos from your machine</label>
+      <input id="fileInput" type="file" accept="image/*" multiple hidden>
+      <div id="thumbStrip" class="thumbs"></div>
+      <button id="fillAllBtn" class="ghost-btn" type="button">Use first photo in every panel</button>
+      <p class="note">Photos are read on your own machine with FileReader and never uploaded.</p>
+    </section>
+
+    <section class="card">
+      <h2>2 · Selected panel</h2>
+      <p class="note">Panel <strong id="panelLabel">1 (hero)</strong> is selected.</p>
+      <label class="field">Photo in this panel
+        <select id="panelPhoto"></select>
+      </label>
+      <label class="field">Zoom
+        <input id="zoomRange" type="range" min="1" max="2.5" step="0.01" value="1">
+      </label>
+      <label class="field">Move left / right
+        <input id="panXRange" type="range" min="-100" max="100" step="1" value="0">
+      </label>
+      <label class="field">Move up / down
+        <input id="panYRange" type="range" min="-100" max="100" step="1" value="0">
+      </label>
+      <button id="resetPanelBtn" class="ghost-btn" type="button">Reset this panel</button>
+    </section>
+
+    <section class="card">
+      <h2>3 · Look</h2>
+      <label class="field">Colour grade
+        <select id="gradeSelect">
+          <option value="sunset">Sunset — orange &amp; pink</option>
+          <option value="neon">Neon Nights — magenta &amp; cyan</option>
+          <option value="dusk">Palm Dusk — purple &amp; blue</option>
+          <option value="golden">Golden Hour — warm amber</option>
+        </select>
+      </label>
+      <label class="field">Frame
+        <select id="frameSelect">
+          <option value="white">White poster gutters</option>
+          <option value="black">Black poster gutters</option>
+          <option value="none">No gutters — edge to edge</option>
+        </select>
+      </label>
+    </section>
+
+    <section class="card">
+      <h2>4 · Caption</h2>
+      <label class="field">Big caption
+        <input id="captionInput" type="text" value="Sunset Heist" maxlength="28">
+      </label>
+      <label class="field">Tagline
+        <input id="subtitleInput" type="text" value="ONE LAST SCORE" maxlength="40">
+      </label>
+      <label class="field">Caption size
+        <input id="titleSizeRange" type="range" min="60" max="150" step="1" value="100">
+      </label>
+      <label class="field">Caption colour
+        <select id="titleColorSelect">
+          <option value="#ffffff">White</option>
+          <option value="#ffd166">Gold</option>
+          <option value="#ff5da2">Hot pink</option>
+          <option value="#7ef0ff">Neon cyan</option>
+        </select>
+      </label>
+      <label class="field">Caption spot
+        <select id="titleSpotSelect">
+          <option value="hero">Over the hero panel</option>
+          <option value="bottom">Bottom band</option>
+        </select>
+      </label>
+    </section>
+  </aside>
+</main>
+
+<footer class="foot">
+  <p>Original design. No Rockstar Games logo, artwork, character or font is used. System fonts only.</p>
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,263 @@
+/* Vice Cover Studio — editor chrome. Dark neon UI, system fonts only. */
+* { box-sizing: border-box; }
+
+:root {
+  --bg: #12081f;
+  --bg2: #1d0f33;
+  --card: #241640;
+  --line: #3d2566;
+  --ink: #f5efff;
+  --muted: #b9a8d9;
+  --pink: #ff5da2;
+  --orange: #ff8a3d;
+  --cyan: #7ef0ff;
+  --gold: #ffd166;
+}
+
+html, body { margin: 0; padding: 0; }
+
+body {
+  background: linear-gradient(160deg, var(--bg) 0%, var(--bg2) 55%, #2a0e2e 100%);
+  color: var(--ink);
+  font-family: "Segoe UI", Arial, Helvetica, sans-serif;
+  min-height: 100vh;
+}
+
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 16px 24px;
+  border-bottom: 1px solid var(--line);
+  background: rgba(0, 0, 0, 0.25);
+}
+
+.brand { display: flex; align-items: center; gap: 14px; }
+
+.brand-mark {
+  display: grid;
+  place-items: center;
+  width: 52px;
+  height: 52px;
+  flex: 0 0 auto;
+  border-radius: 12px;
+  background: linear-gradient(135deg, var(--orange), var(--pink) 55%, #7b2ff7);
+  color: #fff;
+  font-family: "Arial Black", Arial, sans-serif;
+  font-size: 22px;
+  font-weight: 900;
+  letter-spacing: -1px;
+  text-shadow: 0 2px 0 rgba(0, 0, 0, 0.45);
+  box-shadow: 0 4px 18px rgba(255, 93, 162, 0.45);
+}
+
+.brand h1 {
+  margin: 0;
+  font-family: "Arial Black", Arial, sans-serif;
+  font-size: 24px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.brand p { margin: 2px 0 0; color: var(--muted); font-size: 13px; }
+
+.pill {
+  padding: 6px 12px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--card);
+  color: var(--muted);
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 340px;
+  gap: 24px;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 24px;
+  align-items: start;
+}
+
+.stage { min-width: 0; }
+
+.canvas-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+#coverCanvas {
+  display: block;
+  width: min(100%, 560px);
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.55), 0 0 0 1px var(--line);
+  background: #1a0b2e;
+  cursor: crosshair;
+}
+
+.hint { color: var(--muted); font-size: 13px; margin: 0; text-align: center; }
+
+.size-row { display: flex; gap: 8px; justify-content: center; margin: 18px 0 12px; flex-wrap: wrap; }
+
+.size-btn {
+  padding: 9px 14px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--card);
+  color: var(--ink);
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.size-btn:hover { border-color: var(--pink); }
+
+.size-btn.is-active {
+  background: linear-gradient(135deg, var(--orange), var(--pink));
+  border-color: transparent;
+  font-weight: 700;
+}
+
+.export-btn {
+  display: block;
+  width: min(100%, 560px);
+  margin: 0 auto;
+  padding: 14px 20px;
+  border: 0;
+  border-radius: 10px;
+  background: linear-gradient(135deg, var(--orange), var(--pink) 60%, #7b2ff7);
+  color: #fff;
+  font-family: "Arial Black", Arial, sans-serif;
+  font-size: 17px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  cursor: pointer;
+  box-shadow: 0 6px 24px rgba(255, 93, 162, 0.4);
+}
+
+.export-btn:hover { filter: brightness(1.12); }
+.export-btn:active { transform: translateY(1px); }
+
+.status { text-align: center; color: var(--muted); font-size: 13px; min-height: 18px; }
+
+.controls { display: flex; flex-direction: column; gap: 16px; }
+
+.card {
+  padding: 16px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--card);
+}
+
+.card h2 {
+  margin: 0 0 12px;
+  font-family: "Arial Black", Arial, sans-serif;
+  font-size: 14px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.field {
+  display: block;
+  margin-bottom: 12px;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.field input[type="text"],
+.field select {
+  display: block;
+  width: 100%;
+  margin-top: 5px;
+  padding: 9px 10px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #160a28;
+  color: var(--ink);
+  font-size: 14px;
+}
+
+.field input[type="range"] { display: block; width: 100%; margin-top: 6px; accent-color: var(--pink); }
+
+.file-btn {
+  display: block;
+  padding: 11px 14px;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #7b2ff7, var(--pink));
+  color: #fff;
+  font-weight: 700;
+  font-size: 14px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.file-btn:hover { filter: brightness(1.12); }
+
+.ghost-btn {
+  width: 100%;
+  margin-top: 10px;
+  padding: 9px 12px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: transparent;
+  color: var(--ink);
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.ghost-btn:hover { border-color: var(--cyan); color: var(--cyan); }
+
+.note { color: var(--muted); font-size: 12px; line-height: 1.5; margin: 10px 0 0; }
+
+.thumbs { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+
+.thumbs:empty { margin-top: 0; }
+
+.thumb {
+  width: 64px;
+  height: 64px;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 2px solid transparent;
+  cursor: pointer;
+}
+
+.thumb.is-active { border-color: var(--gold); }
+
+.foot {
+  padding: 18px 24px 28px;
+  text-align: center;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+/* Screenshot modes: a bare cover, or the editor, centred on a dark stage. */
+body.shot-cover { background: #0d0618; }
+body.shot-cover .topbar,
+body.shot-cover .controls,
+body.shot-cover .foot,
+body.shot-cover .size-row,
+body.shot-cover .export-btn,
+body.shot-cover .status,
+body.shot-cover .hint { display: none; }
+body.shot-cover .layout { display: block; max-width: none; padding: 0; }
+body.shot-cover .canvas-wrap { min-height: 100vh; justify-content: center; }
+body.shot-cover #coverCanvas {
+  width: min(100vw, 100vh);
+  max-height: 100vh;
+  border-radius: 0;
+  box-shadow: none;
+}
+body.shot-cover[data-size="portrait"] #coverCanvas { width: auto; height: 100vh; max-width: 100vw; }
+body.shot-cover[data-size="wide"] #coverCanvas { width: 100vw; height: auto; max-height: 100vh; }
+
+@media (max-width: 900px) {
+  .layout { grid-template-columns: 1fr; }
+  .brand h1 { font-size: 19px; }
+}
